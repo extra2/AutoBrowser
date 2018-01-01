@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBrowser", "AutoBrowser\AutoBrowser.csproj", "{56FADFC7-B0C8-4B3B-9E77-4741F13E58D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56FADFC7-B0C8-4B3B-9E77-4741F13E58D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56FADFC7-B0C8-4B3B-9E77-4741F13E58D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56FADFC7-B0C8-4B3B-9E77-4741F13E58D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56FADFC7-B0C8-4B3B-9E77-4741F13E58D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5CF908E-2EF3-438C-BDA4-E1F59F2394E8}
+	EndGlobalSection
+EndGlobal
