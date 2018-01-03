@@ -4,7 +4,7 @@
 
 **AutoBrowser** lets you automatize your browser using script language. The program is based on Selenium WebDriver.
 
-Scripts are deviden into two sections: **init** and **program**.
+Scripts are devided into two sections: **init** and **program**.
 
 # Docs
 ## init
