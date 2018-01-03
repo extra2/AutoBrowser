@@ -119,7 +119,6 @@ namespace AutoBrowser
         }
         public bool InitDriver() // init section
         {
-            string url = "";
             ChromeOptions options = new ChromeOptions();
             var service = ChromeDriverService.CreateDefaultService();
             int timeout = 60;
@@ -129,9 +128,6 @@ namespace AutoBrowser
             {
                 switch (_instructions[iterator].Split(' ')[0])
                 {
-                    case "goto":
-                        url = _instructions[iterator].Split(' ')[1];
-                        break;
                     case "debugconsole":
                         if (_instructions[iterator].Split(' ')[1] == "off") service.HideCommandPromptWindow = true;
                         break;
@@ -146,7 +142,6 @@ namespace AutoBrowser
             driver = new ChromeDriver(service, options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(timeout);
-            driver.Url = url;
             return true;
         }
 
