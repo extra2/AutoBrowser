@@ -1,0 +1,15 @@
+init
+debugconsole off
+timeout 60
+program
+goto https://google.com
+waitfor i lst-ib
+ifvisible i lst-ib
+loop 2
+sendtext i lst-ib test google
+endloop
+clickon n btnK
+endif
+wait 10000
+exit
+endprogram
