@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.PhantomJS;
 
 namespace AutoBrowser
 {
@@ -9,7 +12,7 @@ namespace AutoBrowser
     {
         private string[] _instructions;
         public bool IsValid = true;
-        private IWebDriver driver;
+        private IWebDriver driver = null;
         private Operation operation = new Operation();
         public Script(string[] instructions)
         {
@@ -119,29 +122,51 @@ namespace AutoBrowser
         }
         public bool InitDriver() // init section
         {
-            ChromeOptions options = new ChromeOptions();
-            var service = ChromeDriverService.CreateDefaultService();
             int timeout = 60;
             int iterator = 0;
+            char browser = 'c';
+            bool hideDebugConsole = false;
             if (!_instructions[0].Contains("init")) return false;
             while (_instructions[iterator].Split(' ')[0] != "program")
             {
                 switch (_instructions[iterator].Split(' ')[0])
                 {
                     case "debugconsole":
-                        if (_instructions[iterator].Split(' ')[1] == "off") service.HideCommandPromptWindow = true;
+                        if (_instructions[iterator].Split(' ')[1] == "off") hideDebugConsole = true;//service.HideCommandPromptWindow = true;
                         break;
                     case "timeout":
                          timeout = Int32.Parse(_instructions[iterator].Split(' ')[1]);
+                        break;
+                    case "browser":
+                        if (_instructions[iterator].Split(' ')[1] == "chrome") browser = 'c';
+                        else if (_instructions[iterator].Split(' ')[1] == "firefox") browser = 'f';
+                        else if (_instructions[iterator].Split(' ')[1] == "phantomjs") browser = 'p';
                         break;
                     default:
                         break;
                 }
                 iterator++;
             }
-            driver = new ChromeDriver(service, options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
+            switch (browser)
+            {
+                case 'c':
+                    ChromeDriverService c_service = ChromeDriverService.CreateDefaultService();
+                    c_service.HideCommandPromptWindow = hideDebugConsole;
+                    driver = new ChromeDriver(c_service);
+                    break;
+                case 'f':
+                    FirefoxDriverService f_service = FirefoxDriverService.CreateDefaultService();
+                    f_service.HideCommandPromptWindow = hideDebugConsole;
+                    driver = new FirefoxDriver(f_service);
+                    break;
+                case 'p':
+                    PhantomJSDriverService p_service = PhantomJSDriverService.CreateDefaultService();
+                    p_service.HideCommandPromptWindow = hideDebugConsole;
+                    driver = new PhantomJSDriver(p_service);
+                    break;
+            }
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(timeout);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             return true;
         }
 
