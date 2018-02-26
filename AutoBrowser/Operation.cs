@@ -63,7 +63,6 @@ namespace AutoBrowser
                     Thread.Sleep(100);
                 }
             }
-            return true; // for compiler
         }
 
         public bool Wait(int TimeInMs)
