@@ -51,7 +51,7 @@ namespace AutoBrowser
         public bool WaitFor(IWebDriver driver, char FindByType, string FindBy)
         {
             By by = CreateBy(FindByType, FindBy);
-            while (true)
+            while (true) // TODO: add timeout
             {
                 try
                 {
@@ -63,7 +63,7 @@ namespace AutoBrowser
                     Thread.Sleep(100);
                 }
             }
-            return true;
+            return true; // for compiler
         }
 
         public bool Wait(int TimeInMs)
